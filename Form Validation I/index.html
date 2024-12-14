@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation I</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="main">
+        <!-- Main registration form -->
+        <form action="" method="POST" class="form" id="form-1"> <!-- Defines the form, POST method for submission -->
+            <h3 class="heading">Register Members</h3> <!-- Form heading -->
+            <p class="desc">Together buy and sell high quality technology products</p> <!-- Description for form -->
+
+            <div class="spacer"></div> <!-- Spacer for better visual spacing -->
+
+            <!-- Input for full name -->
+            <div class="form-group">
+                <label for="fullname" class="form-label">Full name</label> <!-- Label linked to input -->
+                <input id="fullname" name="fullname" type="text" placeholder="EX: Khanh Doan" class="form-control">
+                <!-- Text input -->
+                <span class="form-message"></span> <!-- Placeholder for validation messages -->
+            </div>
+
+            <!-- Input for email -->
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label> <!-- Label for email -->
+                <input id="email" name="email" type="text" placeholder="VD: email@domain.com" class="form-control">
+                <!-- Email input -->
+                <span class="form-message"></span> <!-- Placeholder for validation messages -->
+            </div>
+
+            <!-- Input for password -->
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label> <!-- Label for password -->
+                <input id="password" name="password" type="password" placeholder="Enter password" class="form-control">
+                <!-- Password input -->
+                <span class="form-message"></span> <!-- Placeholder for validation messages -->
+            </div>
+
+            <!-- Input for password confirmation -->
+            <div class="form-group">
+                <label for="password_confirmation" class="form-label">Enter password again</label>
+                <input id="password_confirmation" name="password_confirmation" placeholder="Enter password again"
+                    type="password" class="form-control"> <!-- Password confirmation input -->
+                <span class="form-message"></span> <!-- Placeholder for validation messages -->
+            </div>
+
+            <!-- Dropdown for gender selection -->
+            <div class="form-group">
+                <label for="gender" class="form-label">Gender</label>
+                <select id="gender" name="gender" class="form-control">
+                    <option value="">-- Gender --</option> <!-- Default empty option -->
+                    <option value="male">Male</option> <!-- Male option -->
+                    <option value="female">Female</option> <!-- Female option -->
+                </select>
+                <span class="form-message"></span> <!-- Placeholder for validation messages -->
+            </div>
+
+            <!-- Dropdown for province selection -->
+            <div class="form-group">
+                <label for="province" class="form-label">Province/City</label>
+                <select id="province" name="province" class="form-control">
+                    <option value="">-- Choose Province/City --</option> <!-- Default empty option -->
+                    <option value="hni">Ha Noi</option>
+                    <option value="hpg">Hai Phong</option>
+                    <option value="hcm">Ho Chi Minh</option>
+                </select>
+                <span class="form-message"></span> <!-- Placeholder for validation messages -->
+            </div>
+
+            <!-- File input for avatar -->
+            <div class="form-group">
+                <label for="avatar" class="form-label">Avatar</label>
+                <input id="avatar" name="avatar" type="file" class="form-control"> <!-- File input for image upload -->
+                <span class="form-message"></span> <!-- Placeholder for validation messages -->
+            </div>
+
+            <!-- Submit button -->
+            <button class="form-submit">Register</button>
+        </form>
+    </div>
+
+    <script src="./validator.js"></script>
+    <script>
+        // Initialize the Validator with the form and rules
+        Validator({
+            form: "#form-1", // Target the form with ID 'form-1'
+            errorSelector: ".form-message", // Select where to display validation errors
+            formGroupSelector: ".form-group", // Target the group wrapping each input
+            rules: [
+                Validator.isRequired("#fullname"), // Full name must not be empty
+                Validator.isRequired("#email"), // Email must not be empty
+                Validator.isRequired("#password"), // Password must not be empty
+                Validator.isRequired("#password_confirmation"), // Password confirmation is required
+                Validator.isRequired("#gender"), // Gender selection is required
+                Validator.isRequired("#province"), // Province selection is required
+                Validator.isRequired("#avatar"), // Avatar upload is required
+                Validator.isEmail("#email"), // Validate proper email format
+                Validator.minLength("#password", 6), // Password must have a minimum of 6 characters
+                Validator.isConfirmed(
+                    "#password_confirmation",
+                    () => document.querySelector("#form-1 #password").value,
+                    "Your password is not match"
+                ), // Ensure passwords match
+            ],
+            onSubmit(data) {
+                // Form submission handler, log validated data
+                console.log(data);
+            }
+        });
+    </script>
+</body>
+
+</html>

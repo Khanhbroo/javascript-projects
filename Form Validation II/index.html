@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation II</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="main">
+        <!-- Registration Form -->
+        <form action="" method="POST" class="form" id="register-form"> <!-- Form with POST method -->
+            <h3 class="heading">Register Members</h3> <!-- Form heading -->
+            <p class="desc">Together buy and sell high quality technology products</p> <!-- Form description -->
+
+            <div class="spacer"></div> <!-- Spacer for spacing elements -->
+
+            <!-- Full Name Input -->
+            <div class="form-group">
+                <label for="fullname" class="form-label">Full name</label> <!-- Label for full name -->
+                <input id="fullname" name="fullname" rules="required" type="text" placeholder="EX: Khanh Doan"
+                    class="form-control">
+                <!-- Input field with validation rules: 'required' -->
+                <span class="form-message"></span> <!-- Span for displaying error messages -->
+            </div>
+
+            <!-- Email Input -->
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label> <!-- Label for email -->
+                <input id="email" name="email" rules="required|email" type="text" placeholder="VD: email@domain.com"
+                    class="form-control">
+                <!-- Input field with validation rules: 'required' and 'email' -->
+                <span class="form-message"></span> <!-- Span for displaying error messages -->
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label> <!-- Label for password -->
+                <input id="password" name="password" rules="required|min:6" type="password" placeholder="Enter password"
+                    class="form-control">
+                <!-- Input field with validation rules: 'required' and 'min:6' -->
+                <span class="form-message"></span> <!-- Span for displaying error messages -->
+            </div>
+
+            <!-- Submit Button -->
+            <button class="form-submit">Register</button> <!-- Form submission button -->
+        </form>
+    </div>
+
+    <script src="./validator.js"></script>
+
+    <script>
+        // Initialize the Validator with the form ID
+        Validator("#register-form", {
+            onSubmit() {
+                // Custom logic when the form is successfully submitted
+                // Placeholder for user-defined submission handling
+            }
+        });
+
+    </script>
+</body>
+
+</html>
