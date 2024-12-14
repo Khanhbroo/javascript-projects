@@ -1,0 +1,16 @@
+
+/* ul {
+    display: none;
+} */
+
+input:focus ~ ul{
+    display: block;
+}
+/* 
+ul {
+    list-style: none;
+} */
+
+button {
+    position: relative;
+}
